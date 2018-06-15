@@ -5,6 +5,19 @@ $replace_service = function ($callback, $option) {
     return $callback($file, $option);
 };
 
-echo $replace_service(function ($data, $option) {
-    echo $data;
+$replace_service(function ($data, $option) {
+    findText($data);
 }, 'Services Common');
+
+
+function findText($html)
+{
+    $dom = new DOMDocument('1.1', 'UTF-8');
+    $dom->loadHTML($html);
+
+    $xpath = new DOMXPath($dom);
+    $routes = $xpath->query("//*/p");
+
+    print_r($routes);
+
+}
